@@ -1,0 +1,22 @@
+[Unit]
+Description=Docker Registry
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+
+WorkingDirectory=/docker-registry
+
+ExecStartPre=-/usr/local/bin/docker-compose kill
+ExecStartPre=-/usr/local/bin/docker-compose rm -f
+
+ExecStart=/usr/local/bin/docker-compose up
+
+ExecStop=/usr/local/bin/docker-compose stop
+
+NotifyAccess=all
+
+[Install]
+WantedBy=multi-user.target
+
