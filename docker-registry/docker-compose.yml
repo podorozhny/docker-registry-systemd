@@ -1,12 +1,3 @@
-nginx:
-  image: "nginx:1.9"
-  ports:
-    - 443:443
-  links:
-    - registry:registry
-  volumes:
-    - ./nginx/:/etc/nginx/conf.d:ro
-
 registry:
   image: registry:2
   ports:
@@ -15,4 +6,3 @@ registry:
     REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /data
   volumes:
     - ./data:/data
-
